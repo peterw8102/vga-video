@@ -1,0 +1,84 @@
+Name     ADDR_CNT ;
+PartNo   ADDR_CNT ;
+Date     17/11/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;
+
+/** NOTE: Set programmer to ATF22V10CQ(UES) **/
+
+/*
+ *  Row counter. This needs to be 10 bits (0-524) and there's no suitable
+ *  TTL device that can do 10 bits. Counts on rising edge and uses a CLR
+ *  input and has output enable (OE) which isn't required for
+ *  the dual port memory but might be if I manage to get buss arbitration
+ *  working for a more flexible design.
+ */
+
+/** input pins **/
+
+PIN 1   = CLK;
+PIN 2   = CLR;
+
+/** output pins **/
+PIN 14  = Q0;
+PIN 15  = Q1;
+PIN 16  = Q2;
+PIN 17  = Q6;
+PIN 18  = Q7;
+PIN 19  = Q8;
+PIN 20  = Q9;
+PIN 21  = Q3;
+PIN 22  = Q4;
+PIN 23  = Q5;
+
+/* Count logic as a state machine (SEQUENCE) */
+tog1 = Q0;
+tog2 = Q1 & Q0;
+tog3 = Q2 & Q1 & Q0;
+tog4 = Q3 & Q2 & Q1 & Q0;
+tog5 = Q4 & Q3 & Q2 & Q1 & Q0;
+tog6 = Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
+tog7 = Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
+tog8 = Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
+tog9 = Q8 & Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
+
+Q0.D = !Q0;
+Q1.D = !tog1 & Q1 # tog1 & !Q1;
+Q2.D = !tog2 & Q2 # tog2 & !Q2;
+Q3.D = !tog3 & Q3 # tog3 & !Q3;
+Q4.D = !tog4 & Q4 # tog4 & !Q4;
+Q5.D = !tog5 & Q5 # tog5 & !Q5;
+Q6.D = !tog6 & Q6 # tog6 & !Q6;
+Q7.D = !tog7 & Q7 # tog7 & !Q7;
+Q8.D = !tog8 & Q8 # tog8 & !Q8;
+Q9.D = !tog9 & Q9 # tog9 & !Q9;
+
+/* SL: impossible value assigned to SP to prevent WinCUPL warning */
+SL = Q9 & Q8 & Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
+
+Q0.ar = CLR;
+Q1.ar = CLR;
+Q2.ar = CLR;
+Q3.ar = CLR;
+Q4.ar = CLR;
+Q5.ar = CLR;
+Q6.ar = CLR;
+Q7.ar = CLR;
+Q8.ar = CLR;
+Q9.ar = CLR;
+
+/* Impossible value to keep WinCUPL happy */
+Q0.sp = SL;
+Q1.sp = SL;
+Q2.sp = SL;
+Q3.sp = SL;
+Q4.sp = SL;
+Q5.sp = SL;
+Q6.sp = SL;
+Q7.sp = SL;
+Q8.sp = SL;
+Q9.sp = SL;

@@ -1,0 +1,37 @@
+Name     IO_DEC ;
+PartNo   IO_DEC ;
+Date     08/12/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G16V8A ;
+
+/****************************************************************/
+/*                                                              */
+/* General File Comments                                        */
+/*                                                              */
+/****************************************************************/
+/* Order: define order, polarity, and output spacing of stimulus and response values */
+/* Vectors: define stimulus and response values, with header
+* and intermediate messages for the simulator listing.
+*
+* Note: Don't Care state (X) on inputs is reflected in outputs where appropriate.
+*/
+/* Order: define order, polarity, and output spacing of stimulus and response values */
+
+ORDER: GST, %3, WR, %2, RD, %2, WR_OUT, %6, RD_IN;
+
+VECTORS:
+$MSG  "      --INPUTS -- --OUTPUTS --";
+$MSG  "      GST WR RD WR_OUT RD_IN";
+$MSG  "      --- -- -- ------ -----";
+100 H L
+101 H L
+110 H L
+111 H L
+000 L H
+001 L L
+010 H H
+011 H L

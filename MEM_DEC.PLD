@@ -1,0 +1,50 @@
+Name     MEM_DEC ;
+PartNo   MEM_DEC ;
+Date     05/12/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;
+
+/** NOTE: Set programmer to ATF22V10CQ(UES) **/
+
+/*
+ *  Memory decode logic for the CPU interface. Map the video memory into the top
+ *  16K page of the 4M memory address range.
+ */
+
+/** input pins **/
+PIN 1   = BA14;     /* BA21-14 are the extended address bits from the CPU board */
+PIN 2   = BA15;     /* extending the address bus to 22 bits (4MB).              */
+PIN 3   = BA16;
+PIN 4   = BA17;
+PIN 5   = BA18;
+PIN 6   = BA19;
+PIN 7   = BA20;
+PIN 8   = BA21;
+PIN 9   = A13;      /* The most significant used bit from the Z80 address bus   */
+PIN 10  = RD;       /* Z80 RD, WR, MREQ */
+PIN 11  = WR;
+PIN 13  = MREQ;
+
+/** output pins **/
+PIN 18  = CE_V;    /* Chip select for the video RAM - upper 8K of block (repeat twice) */
+PIN 19  = CE_C;    /* Chip select for the character generator RAM - lower 8K of block (repeat twice) */
+PIN 20  = V_WR;    /* Video memory WRITE */
+PIN 21  = V_RD;    /* Video memory READ  */
+
+
+/* True for very top 16K block of extended address space */
+BANK_S = BA14 & BA15 & BA16 & BA17 & BA18 & BA19 & BA20 & BA21;
+
+/* Select the character generator memory in the lower 8K */
+!CE_C   = BANK_S & !A13;
+
+/* And the video (character) memory in the upper 8K */
+!CE_V   = BANK_S & A13;
+
+/* Reading and writing to memory */
+!V_WR   = !MREQ & !WR;
+!V_RD   = !MREQ & !RD;

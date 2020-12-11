@@ -1,0 +1,61 @@
+Name     MEM_DEC;
+PartNo   MEM_DEC;
+Date     05/12/2020;
+Revision 01;
+Designer Peter Wilson;
+Company  Home;
+Assembly None;
+Location ;
+Device   G22V10 ;
+
+/****************************************************************/
+/*                                                              */
+/* General File Comments                                        */
+/*                                                              */
+/****************************************************************/
+/* Order: define order, polarity, and output spacing of stimulus and response values */
+/* Vectors: define stimulus and response values, with header
+* and intermediate messages for the simulator listing.
+*
+* Note: Don't Care state (X) on inputs is reflected in outputs where appropriate.
+*/
+/* Order: define order, polarity, and output spacing of stimulus and response values */
+
+ORDER: BA21,BA20,BA19,BA18,BA17,BA16,BA15,BA14,A13,%1,RD,%2,WR,%2,MREQ,%5,CE_C,%3,CE_V,%3,V_RD,%3,V_WR;
+
+VECTORS:
+$MSG  "       Horizontal line tests";
+$MSG  "      A21-A13   RD WR MREQ  CEC CEV VRD VWR";
+$MSG  "      ---- ---- -- -- ----  --- --- --- ---";
+000000000 X X X   H H   X X
+010101010 X X X   H H   X X
+101010101 X X X   H H   X X
+111111110 X X X   L H   X X
+111111111 X X X   H L   X X
+
+111111110 1 1 1   L H   H H
+111111110 1 1 0   L H   H H
+111111110 1 0 1   L H   H H
+111111110 1 0 0   L H   H L
+111111110 0 1 1   L H   H H
+111111110 0 1 0   L H   L H
+111111110 0 0 1   L H   H H
+111111110 0 0 0   L H   L L
+
+111111111 1 1 1   H L   H H
+111111111 1 1 0   H L   H H
+111111111 1 0 1   H L   H H
+111111111 1 0 0   H L   H L
+111111111 0 1 1   H L   H H
+111111111 0 1 0   H L   L H
+111111111 0 0 1   H L   H H
+111111111 0 0 0   H L   L L
+
+111011111 1 1 1   H H   H H
+111011111 1 1 0   H H   H H
+111011111 1 0 1   H H   H H
+111011111 1 0 0   H H   H L
+111011111 0 1 1   H H   H H
+111011111 0 1 0   H H   L H
+111011111 0 0 1   H H   H H
+111011111 0 0 0   H H   L L

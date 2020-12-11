@@ -1,0 +1,61 @@
+Name     VERT_DEC ;
+PartNo   VERT_DEC ;
+Date     13/11/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G16V8A ;
+
+/*
+ *  The Vertical Decoder contains the decoding of the vertical counter to generate
+ *  vertical control signals. There are 525 lines in a frame, 480 of them visible and
+ *  the rest are the blanking period which includes the VSYNC pulse.
+ */
+
+/** input pins - this is the 10 bit row counter from VERT_CNT **/
+PIN 1	  = R0;
+PIN 2   = R1;
+PIN 3   = R2;
+PIN 4   = R3;
+PIN 5   = R4;
+PIN 6   = R5;
+PIN 7   = R6;
+PIN 8   = R7;
+PIN 9   = R8;
+PIN 11  = R9;
+
+/** output pins **/
+PIN 19  = LROW;          /* Active when R3-R0 of row is 1111 - last scan line of a character. */
+PIN 18  = VBLNK;         /* Active high from line 480 onwards */
+PIN 17  = VSYNC;         /* Pulse low for rows 490 and 491 - two line times*/
+PIN 16  = VRST;          /* Reset counters etc at line 525 */
+
+PIN 15  = S0;            /* Scan line is simply the lower 4 bits */
+PIN 14  = S1;            /* of the row address. Passing them     */
+PIN 13  = S2;            /* through the decoder for flexibility  */
+PIN 12  = S3;
+
+/* VBLNK is active from row 480 onwards */
+VBLNK = R9 # (!R9 & R8 & R7 & R6 & R5);
+
+/* VSYNC is active (low) for exactly two rows during the blanking period. As
+ * well as providing the VGA Vertical Sync pulse it also clears the address
+ * counter (the 74161 chain) ready for the next frame
+ */
+VSYNC = !(!R9 & R8 & R7 & R6 & R5 & !R4 & R3 & !R2 & R1);
+
+/* VRST Pulses to clear the row counters and start a new frame as soon as row 525 is hit */
+VRST = R9 & R3 & R2 & R0;
+
+/* LROW is active HIGH when R0-3 are high. That will be the last scan line in a character. */
+LROW = R0 & R1 & R2 & R3;
+
+/* Pass the lower 4 bits of the row count out to address the character generator. Putting
+ * this through the GAL unchanged for now but it might provide some flexibility in future.
+ */
+S0   = R0;
+S1   = R1;
+S2   = R2;
+S3   = R3;

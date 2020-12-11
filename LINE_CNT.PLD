@@ -1,0 +1,84 @@
+Name     LINE_CNT ;
+PartNo   LINE_CNT ;
+Date     17/11/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;
+
+/** NOTE: Set programmer to ATF22V10CQ(UES) **/
+
+/*
+ *  Line Control counter. This needs to be 10 bits and there's no suitable
+ *  TTL device that can do 10 bits. Counts on rising edge and
+ *  resets at 800 (CLR signal).
+ *
+ *  An external ALCR signal is not really necessary but is tied to the system RESET line and is active LOW.
+ */
+
+/** input pins **/
+PIN 1   = CLK;
+PIN 2   = ACLR;
+
+/** output pins. 10 bit counter. **/
+PIN 14  = P0;
+PIN 15  = P1;
+PIN 16  = P2; /* P2 is called COLCLK in the schematic and clocks the address counters */
+PIN 17  = C2;
+PIN 18  = C3;
+PIN 19  = C4;
+PIN 20  = C5;
+PIN 21  = P3;
+PIN 22  = C0;
+PIN 23  = C1;
+
+/* Count logic */
+tog1 = P0;
+tog2 = P1 & P0;
+tog3 = P2 & P1 & P0;
+tog4 = P3 & P2 & P1 & P0;
+tog5 = C0 & P3 & P2 & P1 & P0;
+tog6 = C1 & C0 & P3 & P2 & P1 & P0;
+tog7 = C2 & C1 & C0 & P3 & P2 & P1 & P0;
+tog8 = C3 & C2 & C1 & C0 & P3 & P2 & P1 & P0;
+tog9 = C4 & C3 & C2 & C1 & C0 & P3 & P2 & P1 & P0;
+CLR  = C5 & C4 & C0 & P3 & P2 & P1 & P0;
+
+/* Never want SP so make it an impossible number. WinCUPL gives a warning if X.sp is left undefined */
+PRE  = C5 & C4 & C3;
+
+P0.D = !CLR & !P0;
+P1.D = !CLR & !tog1 & P1 # !CLR & tog1 & !P1;
+P2.D = !CLR & !tog2 & P2 # !CLR & tog2 & !P2;
+P3.D = !CLR & !tog3 & P3 # !CLR & tog3 & !P3;
+C0.D = !CLR & !tog4 & C0 # !CLR & tog4 & !C0;
+C1.D = !CLR & !tog5 & C1 # !CLR & tog5 & !C1;
+C2.D = !CLR & !tog6 & C2 # !CLR & tog6 & !C2;
+C3.D = !CLR & !tog7 & C3 # !CLR & tog7 & !C3;
+C4.D = !CLR & !tog8 & C4 # !CLR & tog8 & !C4;
+C5.D = !CLR & !tog9 & C5 # !CLR & tog9 & !C5;
+
+/* Impossible value to keep WinCUPL warnings away */
+P0.sp = PRE;
+P1.sp = PRE;
+P2.sp = PRE;
+P3.sp = PRE;
+C0.sp = PRE;
+C1.sp = PRE;
+C2.sp = PRE;
+C3.sp = PRE;
+C4.sp = PRE;
+C5.sp = PRE;
+
+P0.AR = !ACLR;
+P1.AR = !ACLR;
+P2.AR = !ACLR;
+P3.AR = !ACLR;
+C0.AR = !ACLR;
+C1.AR = !ACLR;
+C2.AR = !ACLR;
+C3.AR = !ACLR;
+C4.AR = !ACLR;
+C5.AR = !ACLR;
