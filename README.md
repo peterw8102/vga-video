@@ -1,7 +1,7 @@
 # vga-video
 8Bit VGA Video Card for my Z80 SBC. This repo will initially contain the code for the programmable logic devices and might eventually include some test/demo software for the card eventually.
 
-This video adaptor is designed as a daughter card for (my Z80 SBC)[https://easyeda.com/peterw8102/simple-z80] and some understanding of the control signals on that card are useful.
+This video adaptor is designed as a daughter card for [my Z80 SBC](https://easyeda.com/peterw8102/simple-z80) and some understanding of the control signals on that card are useful.
 
 Points to note:
 + The CPU board includes an I/O address decoder where spare lines are taken to the edge connector as the GIST_1-5 lines. This card uses GIST_5
