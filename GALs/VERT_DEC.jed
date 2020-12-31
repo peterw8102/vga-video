@@ -1,7 +1,7 @@
 
 CUPL(WM)        5.0a  Serial# 60008009
 Device          g16v8as  Library DLIB-h-40-2
-Created         Fri Dec 11 20:39:01 2020
+Created         Sat Dec 26 23:43:05 2020
 Name            VERT_DEC 
 Partno          VERT_DEC 
 Revision        01 
@@ -557,4 +557,4 @@ Location
 *V0524 110100000N1XXXXLHHLN
 *V0525 001100000N1XXXXLHHLN
 *V0526 101100000N1XXXXHHHLN
-*3FBF
+*3FCE

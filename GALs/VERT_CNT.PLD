@@ -1,5 +1,5 @@
-Name     ADDR_CNT ;
-PartNo   ADDR_CNT ;
+Name     VERT_CNT ;
+PartNo   VERT_CNT ;
 Date     17/11/2020 ;
 Revision 01 ;
 Designer Peter Wilson ;
@@ -13,9 +13,7 @@ Device   G22V10 ;
 /*
  *  Row counter. This needs to be 10 bits (0-524) and there's no suitable
  *  TTL device that can do 10 bits. Counts on rising edge and uses a CLR
- *  input and has output enable (OE) which isn't required for
- *  the dual port memory but might be if I manage to get buss arbitration
- *  working for a more flexible design.
+ *  input.
  */
 
 /** input pins **/
@@ -46,30 +44,30 @@ tog7 = Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
 tog8 = Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
 tog9 = Q8 & Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
 
-Q0.D = !Q0;
-Q1.D = !tog1 & Q1 # tog1 & !Q1;
-Q2.D = !tog2 & Q2 # tog2 & !Q2;
-Q3.D = !tog3 & Q3 # tog3 & !Q3;
-Q4.D = !tog4 & Q4 # tog4 & !Q4;
-Q5.D = !tog5 & Q5 # tog5 & !Q5;
-Q6.D = !tog6 & Q6 # tog6 & !Q6;
-Q7.D = !tog7 & Q7 # tog7 & !Q7;
-Q8.D = !tog8 & Q8 # tog8 & !Q8;
-Q9.D = !tog9 & Q9 # tog9 & !Q9;
+Q0.D = !CLR & !Q0;
+Q1.D = !CLR & !tog1 & Q1 # !CLR & tog1 & !Q1;
+Q2.D = !CLR & !tog2 & Q2 # !CLR & tog2 & !Q2;
+Q3.D = !CLR & !tog3 & Q3 # !CLR & tog3 & !Q3;
+Q4.D = !CLR & !tog4 & Q4 # !CLR & tog4 & !Q4;
+Q5.D = !CLR & !tog5 & Q5 # !CLR & tog5 & !Q5;
+Q6.D = !CLR & !tog6 & Q6 # !CLR & tog6 & !Q6;
+Q7.D = !CLR & !tog7 & Q7 # !CLR & tog7 & !Q7;
+Q8.D = !CLR & !tog8 & Q8 # !CLR & tog8 & !Q8;
+Q9.D = !CLR & !tog9 & Q9 # !CLR & tog9 & !Q9;
 
 /* SL: impossible value assigned to SP to prevent WinCUPL warning */
 SL = Q9 & Q8 & Q7 & Q6 & Q5 & Q4 & Q3 & Q2 & Q1 & Q0;
 
-Q0.ar = CLR;
-Q1.ar = CLR;
-Q2.ar = CLR;
-Q3.ar = CLR;
-Q4.ar = CLR;
-Q5.ar = CLR;
-Q6.ar = CLR;
-Q7.ar = CLR;
-Q8.ar = CLR;
-Q9.ar = CLR;
+Q0.ar = SL;
+Q1.ar = SL;
+Q2.ar = SL;
+Q3.ar = SL;
+Q4.ar = SL;
+Q5.ar = SL;
+Q6.ar = SL;
+Q7.ar = SL;
+Q8.ar = SL;
+Q9.ar = SL;
 
 /* Impossible value to keep WinCUPL happy */
 Q0.sp = SL;

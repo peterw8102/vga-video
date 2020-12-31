@@ -1,7 +1,7 @@
 
 CUPL(WM)        5.0a  Serial# 60008009
 Device          g16v8as  Library DLIB-h-40-2
-Created         Fri Dec 11 20:20:05 2020
+Created         Sat Dec 26 23:47:55 2020
 Name            IO_DEC 
 Partno          IO_DEC 
 Revision        01 
@@ -32,4 +32,4 @@ Location
 *V0006 010XXXXXXNXXXXXXXLLN
 *V0007 001XXXXXXNXXXXXXXHHN
 *V0008 011XXXXXXNXXXXXXXLHN
-*CDBA
+*CDD8

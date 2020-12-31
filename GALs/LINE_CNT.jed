@@ -1,7 +1,7 @@
 
 CUPL(WM)        5.0a  Serial# 60008009
 Device          g22v10  Library DLIB-h-40-1
-Created         Fri Dec 11 19:54:29 2020
+Created         Sat Dec 26 22:53:12 2020
 Name            LINE_CNT 
 Partno          LINE_CNT 
 Revision        01 
@@ -948,4 +948,4 @@ Location
 *V0819 C1XXXXXXXXXNXHLHLLLLHLLN
 *V0820 C1XXXXXXXXXNXLHHLLLLHLLN
 *V0821 C1XXXXXXXXXNXHHHLLLLHLLN
-*45F7
+*45F5
