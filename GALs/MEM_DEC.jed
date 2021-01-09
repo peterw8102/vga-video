@@ -1,7 +1,7 @@
 
 CUPL(WM)        5.0a  Serial# 60008009
 Device          g22v10  Library DLIB-h-40-1
-Created         Fri Dec 11 20:24:35 2020
+Created         Sat Dec 26 23:37:27 2020
 Name            MEM_DEC 
 Partno          MEM_DEC 
 Revision        01 
@@ -65,4 +65,4 @@ Location
 *V0027 11110111101N0XXXXHHHLXXN
 *V0028 11110111100N1XXXXHHHHXXN
 *V0029 11110111100N0XXXXHHLLXXN
-*D0FB
+*D110

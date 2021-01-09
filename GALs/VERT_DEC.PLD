@@ -46,7 +46,7 @@ VBLNK = R9 # (!R9 & R8 & R7 & R6 & R5);
  */
 VSYNC = !(!R9 & R8 & R7 & R6 & R5 & !R4 & R3 & !R2 & R1);
 
-/* VRST Pulses to clear the row counters and start a new frame as soon as row 525 is hit */
+/* VRST Pulses high to clear the row counters and start a new frame as soon as row 525 is hit */
 VRST = R9 & R3 & R2 & R0;
 
 /* LROW is active HIGH when R0-3 are high. That will be the last scan line in a character. */

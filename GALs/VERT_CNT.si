@@ -1,12 +1,13 @@
-Name     ADDR_CNT;
-PartNo   ADDR_CNT;
-Date     17/11/2020;
-Revision 01;
-Designer Peter Wilson;
-Company  Home;
-Assembly None;
-Location ;
-Device   G22V10;
+Name     VERT_CNT ;
+PartNo   VERT_CNT ;
+Date     17/11/2020 ;
+Revision 01 ;
+Designer Peter Wilson ;
+Company  Home ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;
+
 
 /****************************************************************/
 /*                                                              */
@@ -21,7 +22,7 @@ Device   G22V10;
 */
 /* Order: define order, polarity, and output spacing of stimulus and response values */
 
-ORDER: CLK, %3, CLR, %3, Q9, Q8, Q7, Q6, Q5, Q4, Q3, Q2, Q1, Q0; 
+ORDER: CLK, %3, CLR, %3, Q9, Q8, Q7, Q6, Q5, Q4, Q3, Q2, Q1, Q0;
 
 
 VECTORS:

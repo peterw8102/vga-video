@@ -1,12 +1,12 @@
-Name     IO_DEC ;
-PartNo   IO_DEC ;
-Date     08/12/2020 ;
-Revision 01 ;
-Designer Peter Wilson ;
-Company  Home ;
-Assembly None ;
-Location  ;
-Device   G16V8A ;
+Name     IO_DEC;
+PartNo   IO_DEC;
+Date     08/12/2020;
+Revision 01;
+Designer Peter Wilson;
+Company  Home;
+Assembly None;
+Location ;
+Device   G16V8A;
 
 /****************************************************************/
 /*                                                              */
@@ -23,15 +23,16 @@ Device   G16V8A ;
 
 ORDER: GST, %3, WR, %2, RD, %2, WR_OUT, %6, RD_IN;
 
+
 VECTORS:
 $MSG  "      --INPUTS -- --OUTPUTS --";
 $MSG  "      GST WR RD WR_OUT RD_IN";
 $MSG  "      --- -- -- ------ -----";
-100 H L
-101 H L
-110 H L
-111 H L
-000 L H
-001 L L
-010 H H
-011 H L
+100 L H
+101 L H
+110 L H
+111 L H
+000 H L
+001 H H
+010 L L
+011 L H

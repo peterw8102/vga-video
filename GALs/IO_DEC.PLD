@@ -13,7 +13,7 @@ Device   G16V8A ;
  */
 
 /** input pins **/
-PIN 1	  = GST;           /* Generic I/O range select from the CPU board */
+PIN 1	 = GST;           /* Generic I/O range select from the CPU board */
 PIN 2   = RD;            /* Z80 RD */
 PIN 3   = WR;            /* Z80 WR */
 
@@ -21,5 +21,5 @@ PIN 3   = WR;            /* Z80 WR */
 PIN 19  = WR_OUT;        /* Write strobe (active high) to output 8 bit port register */
 PIN 18  = RD_IN;         /* Read strobe (active low) for input latch */
 
-!WR_OUT = !GST & !WR;
-RD_IN   = !GST & !RD;
+WR_OUT  = !GST & !WR;
+RD_IN   = !(!GST & !RD);
