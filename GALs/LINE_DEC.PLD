@@ -63,5 +63,9 @@ STORE   = LROW & C5 & C3 & !C2 & C1;      /* 16 pixel times long */
 ROWCLK = (C5 & C4 & C0); /* Triggered at 50 and lasts one clock. */
 
 /** Control signals for the shift register **/
-!NBYTE = CNT_EN & PIX & !P2 & !P1 & !P0;   /* First half (20ns) of pixel 0 of byte to load the shift register from the latches */
-LBYTE  = CNT_EN & !P2 &  P1 &  P0;         /* Load next byte into shift register latches. */
+!NBYTE = CNT_EN & !P2 & !P1 & !P0;         /* First half (20ns) of pixel 0 of byte to load the shift register from the latches */
+LBYTE  = CNT_EN & PIX & !P2 & !P1 & !P0;   /* Load next byte into register latches. */
+/*
+!NBYTE = CNT_EN & PIX & !P2 & !P1 & !P0;
+LBYTE  = CNT_EN & !P2 &  P1 &  P0;
+*/
