@@ -55,7 +55,7 @@ STORE   = LROW & C5 & C3 & !C2 & C1;      /* 16 pixel times long */
  * the STORE signal. In this way there's no wasted memory and more
  * importantly less memory to bitblit to do things like scrolling.
  */
-!LOAD   = (C5 & C3 & C2 & C1);              /* 16 pixel times long */
+!LOAD   = (C5 & C3 & C2 & C1 & !VBLNK);    /* 16 pixel times long */
 
 /* ROWCLK. Goes high for one row event clock cycle. The low going edge then
  * increments the row address counter.
